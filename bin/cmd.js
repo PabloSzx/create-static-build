@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+const path = require("path");
 const argv = require("minimist")(process.argv.slice(2), {
   alias: {
     c: "context",
@@ -11,7 +11,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     o: "onStart",
   },
   default: {
-    context: __dirname,
+    context: path.join(__dirname, "../../../"),
     checksumFolder: "checksum",
     folder: "react",
     name: "react",
