@@ -11,8 +11,8 @@ module.exports = class createStaticBuild {
     this.adjust = adjust;
     this.staticPath = staticPath;
 
-    this.hashFolder = new HashFolder({ context, folder, name });
-    this.checksum = new Checksum({ context, folder, name });
+    this.hashFolder = new HashFolder({ context, folder, name, adjust });
+    this.checksum = new Checksum({ context, folder, name, adjust });
     this.shell = new Shell({ context, adjust, name, staticPath, folder });
 
     if (onStart) this.check();
