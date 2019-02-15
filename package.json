@@ -1,6 +1,6 @@
 {
   "name": "create-static-build",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,8 @@
   "dependencies": {
     "cross-env": "^5.2.0",
     "folder-hash": "^2.1.2",
+    "lodash": "^4.17.11",
+    "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "shelljs": "^0.8.3"
   },
