@@ -3,16 +3,31 @@ const Checksum = require("./lib/Checksum");
 const Shell = require("./lib/Shell");
 module.exports = class createStaticBuild {
   constructor(
-    { context, folder, name, adjust, staticPath, onStart = true } = {}
+    {
+      context,
+      folder,
+      name,
+      adjust,
+      staticPath,
+      checksumFolder,
+      onStart = true,
+    } = {}
   ) {
     this.context = context;
     this.folder = folder;
     this.name = name;
     this.adjust = adjust;
     this.staticPath = staticPath;
+    this.checksumFolder = checksumFolder;
 
     this.hashFolder = new HashFolder({ context, folder, name, adjust });
-    this.checksum = new Checksum({ context, folder, name, adjust });
+    this.checksum = new Checksum({
+      context,
+      folder,
+      name,
+      adjust,
+      checksumFolder,
+    });
     this.shell = new Shell({ context, adjust, name, staticPath, folder });
 
     if (onStart) this.check();
