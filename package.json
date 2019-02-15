@@ -1,6 +1,6 @@
 {
   "name": "create-static-build",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "main": "index.js",
   "author": "pablosz",
@@ -9,6 +9,7 @@
     "cross-env": "^5.2.0",
     "folder-hash": "^2.1.2",
     "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "path": "^0.12.7",
     "shelljs": "^0.8.3"
@@ -16,5 +17,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/PabloSzx/create-static-build.git"
+  },
+  "bin": {
+    "create-static-build": "bin/cmd.js"
   }
 }

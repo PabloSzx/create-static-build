@@ -45,7 +45,7 @@ module.exports = class createStaticBuild {
         console.log(`No changes detected in ${name}`);
       }
     } catch (err) {
-      console.error(err);
+      if (err) console.error(err);
     }
   }
 };
