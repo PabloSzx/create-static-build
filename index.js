@@ -9,6 +9,7 @@ module.exports = class createStaticBuild {
     this.folder = folder;
     this.name = name;
     this.adjust = adjust;
+    this.staticPath = staticPath;
 
     this.hashFolder = new HashFolder({ context, folder, name });
     this.checksum = new Checksum({ context, folder, name });
