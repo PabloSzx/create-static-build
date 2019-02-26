@@ -38,7 +38,7 @@ const {
   staticPath,
   onStart,
 } = argv;
-console.log("createStaticBuild :", {
+console.log("createStaticBuild 1.0.9501 :", {
   context,
   checksumFolder,
   folder,
