@@ -2,6 +2,9 @@
 
 if (process.env.PWD) {
   console.log("CONTEXT PWD: ", process.env.PWD);
+} else {
+  process.env.PWD = process.cwd();
+  console.log("PWD Generated: ", process.env.PWD);
 }
 const path = require("path");
 const argv = require("minimist")(process.argv.slice(2), {
@@ -12,7 +15,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     n: "name",
     a: "adjust",
     sp: "staticPath",
-    o: "onStart"
+    o: "onStart",
   },
   default: {
     context: process.env.PWD || path.join(__dirname, "../../../"),
@@ -21,8 +24,8 @@ const argv = require("minimist")(process.argv.slice(2), {
     name: "react",
     adjust: "",
     staticPath: "public",
-    onStart: true
-  }
+    onStart: true,
+  },
 });
 const createStaticBuild = require("../");
 
@@ -33,7 +36,7 @@ const {
   name,
   adjust,
   staticPath,
-  onStart
+  onStart,
 } = argv;
 console.log("createStaticBuild :", {
   context,
@@ -42,7 +45,7 @@ console.log("createStaticBuild :", {
   name,
   adjust,
   staticPath,
-  onStart
+  onStart,
 });
 
 new createStaticBuild({
@@ -52,5 +55,5 @@ new createStaticBuild({
   name,
   adjust,
   staticPath,
-  onStart
+  onStart,
 });
