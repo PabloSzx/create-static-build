@@ -11,6 +11,13 @@ module.exports = class createStaticBuild {
       staticPath,
       checksumFolder,
       onStart = true,
+      scripts = {
+        build: true,
+        remove: true,
+        copy: true,
+      },
+      hashFolder,
+      shellFolder,
     } = {}
   ) {
     this.context = context;
@@ -20,7 +27,12 @@ module.exports = class createStaticBuild {
     this.staticPath = staticPath;
     this.checksumFolder = checksumFolder;
 
-    this.hashFolder = new HashFolder({ context, folder, name, adjust });
+    this.hashFolder = new HashFolder({
+      context,
+      folder: hashFolder || folder,
+      name,
+      adjust,
+    });
     this.checksum = new Checksum({
       context,
       folder,
@@ -28,7 +40,14 @@ module.exports = class createStaticBuild {
       adjust,
       checksumFolder,
     });
-    this.shell = new Shell({ context, adjust, name, staticPath, folder });
+    this.shell = new Shell({
+      context,
+      adjust,
+      name,
+      staticPath,
+      folder: shellFolder || folder,
+      scripts,
+    });
 
     if (onStart) this.check();
   }

@@ -16,6 +16,11 @@ const argv = require("minimist")(process.argv.slice(2), {
     a: "adjust",
     sp: "staticPath",
     o: "onStart",
+    hf: "hashFolder",
+    sf: "shellFolder",
+    rm: "remove",
+    cp: "copy",
+    b: "build",
   },
   default: {
     context: process.env.PWD || path.join(__dirname, "../../../"),
@@ -25,8 +30,15 @@ const argv = require("minimist")(process.argv.slice(2), {
     adjust: "",
     staticPath: "public",
     onStart: true,
+    copy: true,
+    hashFolder: undefined,
+    shellFolder: undefined,
+    remove: true,
+    copy: true,
+    build: true,
   },
 });
+
 const createStaticBuild = require("../");
 
 const {
@@ -37,6 +49,11 @@ const {
   adjust,
   staticPath,
   onStart,
+  hashFolder,
+  shellFolder,
+  remove,
+  copy,
+  build,
 } = argv;
 console.log("createStaticBuild 1.0.9501 :", {
   context,
@@ -46,6 +63,11 @@ console.log("createStaticBuild 1.0.9501 :", {
   adjust,
   staticPath,
   onStart,
+  hashFolder,
+  shellFolder,
+  remove,
+  copy,
+  build,
 });
 
 new createStaticBuild({
@@ -56,4 +78,11 @@ new createStaticBuild({
   adjust,
   staticPath,
   onStart,
+  hashFolder,
+  shellFolder,
+  scripts: {
+    remove,
+    copy,
+    build,
+  },
 });
