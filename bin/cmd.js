@@ -55,7 +55,7 @@ const {
   copy,
   build,
 } = argv;
-console.log("createStaticBuild 1.0.9501 :", {
+console.log("createStaticBuild 1.0.9701 :", {
   context,
   checksumFolder,
   folder,
