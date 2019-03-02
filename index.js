@@ -55,11 +55,17 @@ module.exports = class createStaticBuild {
   async check(name = this.name) {
     try {
       const hash = await this.hashFolder.getHashFolder();
+      let resolve;
+      let reject;
+      const promise = new Promise((res, rej) => {
+        resolve = res;
+        reject = rej;
+      });
       await this.checksum.ready();
-      const build = await this.checksum.checkHashFolder(hash);
+      const build = await this.checksum.checkHashFolder({ promise }, hash);
       if (build) {
         console.log(`${name} building...`);
-        this.shell.build();
+        this.shell.build({ resolve, reject });
       } else {
         console.log(`No changes detected in ${name}`);
       }
