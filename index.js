@@ -18,6 +18,7 @@ module.exports = class createStaticBuild {
       },
       hashFolder,
       shellFolder,
+      silent = false,
     } = {}
   ) {
     this.context = context;
@@ -26,6 +27,7 @@ module.exports = class createStaticBuild {
     this.adjust = adjust;
     this.staticPath = staticPath;
     this.checksumFolder = checksumFolder;
+    this.silent = silent;
 
     this.hashFolder = new HashFolder({
       context,
@@ -67,7 +69,7 @@ module.exports = class createStaticBuild {
         console.log(`${name} building...`);
         this.shell.build({ resolve, reject });
       } else {
-        console.log(`No changes detected in ${name}`);
+        if (!this.silent) console.log(`No changes detected in ${name}`);
       }
     } catch (err) {
       if (err) console.error(err);

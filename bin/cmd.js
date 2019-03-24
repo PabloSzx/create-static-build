@@ -21,6 +21,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     rm: "remove",
     cp: "copy",
     b: "build",
+    s: "silent",
   },
   default: {
     context: process.env.PWD || path.join(__dirname, "../../../"),
@@ -36,6 +37,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     remove: true,
     copy: true,
     build: true,
+    silent: false,
   },
 });
 
@@ -54,21 +56,24 @@ const {
   remove,
   copy,
   build,
+  silent,
 } = argv;
-console.log("createStaticBuild 1.0.9701 :", {
-  context,
-  checksumFolder,
-  folder,
-  name,
-  adjust,
-  staticPath,
-  onStart,
-  hashFolder,
-  shellFolder,
-  remove,
-  copy,
-  build,
-});
+
+if (!silent)
+  console.log("createStaticBuild 1.0.9704 :", {
+    context,
+    checksumFolder,
+    folder,
+    name,
+    adjust,
+    staticPath,
+    onStart,
+    hashFolder,
+    shellFolder,
+    remove,
+    copy,
+    build,
+  });
 
 new createStaticBuild({
   context,
@@ -80,6 +85,7 @@ new createStaticBuild({
   onStart,
   hashFolder,
   shellFolder,
+  silent,
   scripts: {
     remove,
     copy,
