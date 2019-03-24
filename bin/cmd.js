@@ -1,12 +1,5 @@
 #!/usr/bin/env node
 
-if (process.env.PWD) {
-  console.log("CONTEXT PWD: ", process.env.PWD);
-} else {
-  process.env.PWD = process.cwd();
-  console.log("PWD Generated: ", process.env.PWD);
-}
-const path = require("path");
 const argv = require("minimist")(process.argv.slice(2), {
   alias: {
     c: "context",
@@ -24,7 +17,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     s: "silent",
   },
   default: {
-    context: process.env.PWD || path.join(__dirname, "../../../"),
+    context: process.env.PWD || process.cwd(),
     checksumFolder: "checksum",
     folder: "react",
     name: "react",
