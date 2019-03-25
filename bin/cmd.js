@@ -31,6 +31,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     copy: true,
     build: true,
     silent: false,
+    force: false,
   },
 });
 
@@ -50,6 +51,7 @@ const {
   copy,
   build,
   silent,
+  force,
 } = argv;
 
 if (!silent)
@@ -66,6 +68,8 @@ if (!silent)
     remove,
     copy,
     build,
+    silent,
+    force,
   });
 
 new createStaticBuild({
@@ -79,6 +83,7 @@ new createStaticBuild({
   hashFolder,
   shellFolder,
   silent,
+  force,
   scripts: {
     remove,
     copy,

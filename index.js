@@ -19,6 +19,7 @@ module.exports = class createStaticBuild {
       hashFolder,
       shellFolder,
       silent = false,
+      force = false,
     } = {}
   ) {
     this.context = context;
@@ -28,6 +29,7 @@ module.exports = class createStaticBuild {
     this.staticPath = staticPath;
     this.checksumFolder = checksumFolder;
     this.silent = silent;
+    this.force = force;
 
     this.hashFolder = new HashFolder({
       context,
@@ -65,7 +67,7 @@ module.exports = class createStaticBuild {
       });
       await this.checksum.ready();
       const build = await this.checksum.checkHashFolder({ promise }, hash);
-      if (build) {
+      if (this.force || build) {
         console.log(`${name} building...`);
         this.shell.build({ resolve, reject });
       } else {
