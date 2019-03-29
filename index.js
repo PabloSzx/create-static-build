@@ -2,26 +2,25 @@ const HashFolder = require("./lib/HashFolder");
 const Checksum = require("./lib/Checksum");
 const Shell = require("./lib/Shell");
 module.exports = class createStaticBuild {
-  constructor(
-    {
-      context,
-      folder,
-      name,
-      adjust,
-      staticPath,
-      checksumFolder,
-      onStart = true,
-      scripts = {
-        build: true,
-        remove: true,
-        copy: true,
-      },
-      hashFolder,
-      shellFolder,
-      silent = false,
-      force = false,
-    } = {}
-  ) {
+  constructor({
+    context,
+    folder,
+    name,
+    adjust,
+    staticPath,
+    checksumFolder,
+    onStart = true,
+    scripts = {
+      build: true,
+      remove: true,
+      copy: true,
+      install: true
+    },
+    hashFolder,
+    shellFolder,
+    silent = false,
+    force = false
+  } = {}) {
     this.context = context;
     this.folder = folder;
     this.name = name;
@@ -35,14 +34,14 @@ module.exports = class createStaticBuild {
       context,
       folder: hashFolder || folder,
       name,
-      adjust,
+      adjust
     });
     this.checksum = new Checksum({
       context,
       folder,
       name,
       adjust,
-      checksumFolder,
+      checksumFolder
     });
     this.shell = new Shell({
       context,
@@ -50,7 +49,7 @@ module.exports = class createStaticBuild {
       name,
       staticPath,
       folder: shellFolder || folder,
-      scripts,
+      scripts
     });
 
     if (onStart) this.check();

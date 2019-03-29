@@ -15,6 +15,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     cp: "copy",
     b: "build",
     s: "silent",
+    i: "install"
   },
   default: {
     context: process.env.PWD || process.cwd(),
@@ -30,9 +31,10 @@ const argv = require("minimist")(process.argv.slice(2), {
     remove: true,
     copy: true,
     build: true,
+    install: true,
     silent: false,
-    force: false,
-  },
+    force: false
+  }
 });
 
 const createStaticBuild = require("../");
@@ -50,12 +52,13 @@ const {
   remove,
   copy,
   build,
+  install,
   silent,
-  force,
+  force
 } = argv;
 
 if (!silent)
-  console.log("createStaticBuild 1.0.9704 :", {
+  console.log(`createStaticBuild ${require("../package.json").version} :`, {
     context,
     checksumFolder,
     folder,
@@ -68,8 +71,9 @@ if (!silent)
     remove,
     copy,
     build,
+    install,
     silent,
-    force,
+    force
   });
 
 new createStaticBuild({
@@ -88,5 +92,6 @@ new createStaticBuild({
     remove,
     copy,
     build,
-  },
+    install
+  }
 });
