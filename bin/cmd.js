@@ -15,7 +15,7 @@ const argv = require("minimist")(process.argv.slice(2), {
     cp: "copy",
     b: "build",
     s: "silent",
-    i: "install"
+    i: "install",
   },
   default: {
     context: process.env.PWD || process.cwd(),
@@ -33,8 +33,8 @@ const argv = require("minimist")(process.argv.slice(2), {
     build: true,
     install: true,
     silent: false,
-    force: false
-  }
+    force: false,
+  },
 });
 
 const createStaticBuild = require("../");
@@ -54,7 +54,7 @@ const {
   build,
   install,
   silent,
-  force
+  force,
 } = argv;
 
 if (!silent)
@@ -73,7 +73,7 @@ if (!silent)
     build,
     install,
     silent,
-    force
+    force,
   });
 
 new createStaticBuild({
@@ -92,6 +92,6 @@ new createStaticBuild({
     remove,
     copy,
     build,
-    install
-  }
+    install,
+  },
 });
